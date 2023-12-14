@@ -9,4 +9,7 @@ class Stack:
         self._storage.append(value)
 
     def pop(self):
+        if len(self._storage) == 0:
+            return None
         return self._storage.pop()
+        # Could also do this with try/except blocks

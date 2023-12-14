@@ -1,4 +1,4 @@
-from ds.stack import Stack
+from intro.ds.stack import Stack
 import pytest
 
 
@@ -7,11 +7,14 @@ def stack():
     return Stack()
 
 
+@pytest.mark.smoke
 def test_constructor(stack):
     assert isinstance(stack, Stack)
     assert len(stack) == 0
 
 
+@pytest.mark.smoke
+# @pytest.mark.skip
 def test_push(stack):
     stack.push(10)
     assert len(stack) == 1
@@ -20,8 +23,9 @@ def test_push(stack):
 
 
 def test_pop(stack):
-    stack.push(10)
-    assert len(stack) == 1
-    value = stack.pop()
-    assert len(stack) == 0
-    assert value == 10
+    stack.push("Hello")
+    stack.push("World")
+    assert len(stack) == 2
+    assert stack.pop() == "World"
+    assert stack.pop() == "Hello"
+    assert stack.pop() is None
